@@ -5,6 +5,7 @@ import {
   validateRequest,
   requireAuth,
   NotAuthorisedError,
+  BadRequestError,
 } from '@bc_tickets/common';
 import { Ticket } from '../models/ticket';
 import { TicketUpdatedPublisher } from '../events/publishers/ticket-updated-publisher';
@@ -29,6 +30,10 @@ router.put(
       throw new NotFoundError();
     }
 
+    if (ticket.orderId) {
+      throw new BadRequestError('Cannot edit a reserved ticket');
+    }
+
     if (ticket.userId !== req.currentUser!.id) {
       throw new NotAuthorisedError();
     }
@@ -45,6 +50,7 @@ router.put(
       title: ticket.title,
       price: ticket.price,
       userId: ticket.userId,
+      version: ticket.version,
     });
 
     res.send(ticket);
