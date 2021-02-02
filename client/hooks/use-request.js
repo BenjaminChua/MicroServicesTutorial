@@ -4,10 +4,11 @@ import axios from 'axios';
 const useRequest = ({ url, method, body, onSuccess }) => {
   const [errors, setErrors] = useState(null);
 
-  const doRequest = async () => {
+  const doRequest = async (props = {}) => {
     try {
       setErrors(null);
-      const response = await axios[method](url, body);
+      const response = await axios[method](url,
+        { ...body, ...props });
 
       if (onSuccess) {
         onSuccess(response.data);
@@ -17,7 +18,7 @@ const useRequest = ({ url, method, body, onSuccess }) => {
     } catch (err) {
       setErrors(
         <div className="alert alert-danger">
-          <h4>Invalid Email/Password</h4>
+          <h4>Invalid Request</h4>
           <ul className="my-0">
             {err.response.data.errors.map(err => <li key={err.message}>{err.message}</li>)}
           </ul>
