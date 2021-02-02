@@ -9,7 +9,7 @@ it('returns a 400 on successful signin', async () => {
 });
 
 it('fails when an incorrect password is supplied', async () => {
-  global.signup;
+  await global.signup();
 
   await request(app)
     .post('/api/users/signin')
@@ -18,7 +18,7 @@ it('fails when an incorrect password is supplied', async () => {
 });
 
 it('responds with a cookie when given valid credentials', async () => {
-  global.signup;
+  await global.signup();
 
   const response = await request(app)
     .post('/api/users/signin')
