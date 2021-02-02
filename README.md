@@ -79,3 +79,11 @@ https://kubernetes.github.io/ingress-nginx/deploy/#docker-for-mac
 https://kubernetes.github.io/ingress-nginx/deploy/#digital-ocean
 
 `kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v0.43.0/deploy/static/provider/do/deploy.yaml`
+
+### Add HTTPS
+
+see cert-manager.io
+
+### Add Email support
+
+see Mailchimp/Sendgrid
