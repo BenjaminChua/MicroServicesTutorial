@@ -1,3 +1,7 @@
+# Ticketing web application
+
+Microservices application with Services that include User Authentication, Ticket Creation, Order Creation, Payment and timed expiration. Front-end is built using service-side rendering Next.js and reusable code is packaged into an npm module named common.
+
 ## Ingress-nginx installation
 
 https://kubernetes.github.io/ingress-nginx/deploy/#docker-for-mac
@@ -15,19 +19,23 @@ https://kubernetes.github.io/ingress-nginx/deploy/#docker-for-mac
 ## Update common module and push to npm registry
 
 `cd common`
+
 `npm run pub`
 
 ## Update common module dependency in tickets
 
 `cd tickets`
+
 `npm update @bc_tickets/common`
 
 ## Running test in tickets
 
 `cd tickets`
+
 `npm run test`
 
 ## Development only port forwarding
 
 `kubectl get pods`
+
 `kubectl port-forward nats-depl-75854b5b89-dbbdz 4222:4222`
