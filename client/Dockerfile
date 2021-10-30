@@ -5,4 +5,4 @@ COPY package.json .
 RUN npm install
 COPY . .
 
-CMD npm run dev
+CMD export NODE_OPTIONS=--openssl-legacy-provider && npm run dev
